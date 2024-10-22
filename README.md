@@ -1,0 +1,1 @@
+Este projeto é baseado no trabalho final da matéria de Sistemas Operacionais, ministrada pelo Professor Alisson de Souza.
