@@ -9,6 +9,7 @@ void RR(vector<processos> &programa, int quantum){
 
     tempo_atual += programa[pos].start_time;
     fila.push(&programa[pos]);
+    programa[pos].estado = "Pronto";
     pos++;
 
     for (int i = 0; i < (int)programa.size(); i++) tempo_restante[i] = programa[i].duracao;
@@ -16,7 +17,7 @@ void RR(vector<processos> &programa, int quantum){
     while(!fila.empty() || pos != (int) programa.size()){
         aux = fila.front()->id - 1;
         fila.pop();
-        
+
         int execucao = min(quantum, tempo_restante[aux]);
         tempo_restante[aux] -= execucao;
         tempo_atual += execucao;
@@ -32,7 +33,7 @@ void RR(vector<processos> &programa, int quantum){
         for(int i = pos; i < (int)programa.size(); ++i){
             if(programa[i].start_time <= tempo_atual){
                 fila.push(&programa[i]);
-                programa[i].estado = "Executando";
+                programa[i].estado = "Pronto";
                 pos++;
             }
             else{
@@ -44,7 +45,10 @@ void RR(vector<processos> &programa, int quantum){
             }
         }
 
-        if(flag) fila.push(&programa[aux]);
+        if(flag){
+            fila.push(&programa[aux]);
+            programa[aux].estado = "Suspenso";
+        }
         else flag = 1;
     }
 
