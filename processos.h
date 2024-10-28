@@ -17,7 +17,7 @@ struct processos{
     int end_time;
     string estado;
 
-    processos(int duracao, int inicio) : duracao(duracao), start_time(inicio), estado("Pronto") {};
+    processos(int duracao, int inicio) : duracao(duracao), start_time(inicio), estado("Novo") {};
 };
 
 /**
